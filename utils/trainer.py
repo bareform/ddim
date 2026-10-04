@@ -127,8 +127,8 @@ def parse_args():
     parser.add_argument(
         "--save_checkpoint_interval",
         type=int,
-        default=200000,
-        help="Interval (in iterations) at which to save model checkpoints (default: 200).",
+        default=500000,
+        help="Interval (in iterations) at which to save model checkpoints (default: 500000).",
     )
     parser.add_argument(
         "--output_dir",
@@ -139,8 +139,8 @@ def parse_args():
     parser.add_argument(
         "--save_output_interval",
         type=int,
-        default=1000,
-        help="Number of iterations between saving intermediate output (default: 1000).",
+        default=100000,
+        help="Number of iterations between saving intermediate output (default: 100000).",
     )
     parser.add_argument(
         "--nrow",
@@ -151,8 +151,8 @@ def parse_args():
     parser.add_argument(
         "--compute_fid_interval",
         type=int,
-        default=20000,
-        help="Number of iterations between FID evaluations (default: 20000).",
+        default=100000,
+        help="Number of iterations between FID evaluations (default: 100000).",
     )
     parser.add_argument(
         "--mixed_precision",
@@ -167,7 +167,7 @@ def parse_args():
         help="Train with torch.compile.",
     )
     parser.add_argument(
-        "--seed",
+        "--random_seed",
         type=int,
         default=0,
         help="Random seed (default: 0).",
@@ -179,7 +179,7 @@ def main():
     args = parse_args()
     pad_length = len(str(args.n_steps))
 
-    torchutils.set_seed(args.seed)
+    torchutils.set_seed(args.random_seed)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(f"Device: {device}")
