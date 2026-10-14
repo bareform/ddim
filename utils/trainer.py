@@ -402,8 +402,6 @@ def main():
 
         global_step += 1
 
-    os.makedirs(args.checkpoint_dir, exist_ok=True)
-
     state_dict = OrderedDict()
     for k, v in ema.ema_model.state_dict().items():
         new_key = k.replace("_orig_mod.", "")
