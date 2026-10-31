@@ -374,6 +374,7 @@ def main():
                 "timesteps": args.ddpm_training_timesteps,
                 "lr": args.lr,
                 "optimizer": optimizer.state_dict(),
+                "scaler_state_dict": scaler.state_dict(),
                 "image_height": args.image_height,
                 "image_width": args.image_width
             }, checkpoint_file)
